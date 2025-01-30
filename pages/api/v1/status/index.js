@@ -19,7 +19,10 @@ async function status(request, response) {
   });
   //     "SELECT count(*)::int FROM pg_stat_activity WHERE datname = 'local_db'",
 
-  const databaseOpenedConnectionsValue = response.status(200).json({
+  const databaseOpenedConnectionsValue =
+    databaseOpenedConnectionsResult.rows[0].count;
+
+  response.status(200).json({
     updated_at: updatedAt,
     dependencies: {
       database: {
